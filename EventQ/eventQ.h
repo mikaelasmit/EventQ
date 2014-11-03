@@ -11,14 +11,8 @@
 
 using namespace std;
 
-// Miki Notes: 'const' stands for constant and keep the input elements unchanged
-// [...] the position in which it is applied changed its usage 
-
 //// --- DEFINE THE COMPARISON CLASS AND DEFINE OPERATOR() ---
-struct timeComparison {bool operator()(const event *lhs, const event *rhs) const;};		
-
-// Miki Note: could include the priority Q (at the moment in eventQ class) 
-// [...] to make it globally available and use POP/PUSH/SIZE instead of ADD/GETTOP/SIZE
+struct timeComparison {bool operator()(const event *lhs, const event *rhs) const;};	
 
 
 //// --- CREATING EVENTQ ---
@@ -26,19 +20,24 @@ class eventQ{
 public:
 
 	eventQ();								// Constructor
+	
+	
+	
+	//// --- ADDITIONAL CODE FOR LATER - MAYBE --- ////
+	
 	//~eventQ();							// Jack included this deconstructor - CHECK USAGE OF DECONSTRUCTORS
 	
 	// Miki Note: This is elements of the priorityQ defined by Jack to be removed in next version
-	// [...] consider using later on if needed
-	void Add(event * const theEvent);		// Miki Note: This allows to make an event pointer to 'theEvent' used e.g. in iQ.push(theEvent)
+	//// [...] consider using later on if needed
+	//void Add(event * const theEvent);		// Miki Note: This allows to make an event pointer to 'theEvent' used e.g. in iQ.push(theEvent)
 
-	int Size() const;						
+	//int Size() const;						
 
-	event * GetTop();
-		
-	void RemoveTop();
-	
-	priority_queue<event*, vector<event*>, timeComparison> iQ;
+	//event * GetTop();
+	//	
+	//void RemoveTop();
+	//
+	//priority_queue<event*, vector<event*>, timeComparison> iQ;
 	
 };
 

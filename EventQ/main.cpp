@@ -27,7 +27,7 @@ int main()
 	srand(time(NULL));									// Random Number generator using PC time
 	
 	cout << "Hello, Mikaela!" << endl;					// Check if model is running
-	
+	priority_queue<event*, vector<event*>, timeComparison> iQ;
 	
 	//// --- ADD EVENTS TO EVENT_Q ---	
 	event * HivTest = new event;						// --- HIV Testing ---
@@ -45,31 +45,32 @@ int main()
 	
 	
 	//// --- EVENT QUEUE ---
-	eventQ mainQ;										// Define event queue
+	//eventQ mainQ;										// Define event queue
+	//eventQ::iQ mainQ;
 	
-	mainQ.Add(HivTest);									// Add HIVTest to queue
-	mainQ.Add(DeathDate);								// Add Death to queue
-	mainQ.Add(BirthdayDate);							// Add Birthday to queue
+	iQ.push(HivTest);									// Add HIVTest to queue
+	iQ.push(DeathDate);								// Add Death to queue
+	iQ.push(BirthdayDate);							// Add Birthday to queue
 
 	
-	//// --- GIVE OUTPUT OF QUEUE AS IT PROGRESSES ---
+	// --- GIVE OUTPUT OF QUEUE AS IT PROGRESSES ---
 
-	//// To check what these dates are to proof EventQ
+	// To check what these dates are to proof EventQ
 	cout << endl << "The date of HIV Infection is at " << HivTest->time << " years after start of model." << endl;
 	cout << "The date of Death is " << DeathDate->time << " years after start of model."<< endl;
 	cout << "The date of my next birthday is " << BirthdayDate->time << " years after start of model." << endl;
 
 	//// Lets check the queue
-	cout << endl << "The event at the top of the queue will ocurr  " << mainQ.GetTop()->time << " years after start of model." << endl;
-	cout << "The size of the event queue is " << mainQ.Size() << endl;
+	cout << endl << "The event at the top of the queue will ocurr  " << iQ.top()->time << " years after start of model." << endl;
+	cout << "The size of the event queue is " << iQ.size() << endl;
 
-	cout << endl << "The next event has just ocurred.  It is " << mainQ.GetTop()->time << " years after the start of the model and "; mainQ.GetTop()-> p_fun();
-	cout << "The following top event has just been removed from the event queue "; mainQ.GetTop()-> p_fun(); cout  << endl;
-	mainQ.RemoveTop();	
-	cout << endl << "The next event has just ocurred.  It is " << mainQ.GetTop()->time << " years after the start of the model and "; mainQ.GetTop()-> p_fun();
-	cout << "The following top event has just been removed from the event queue "; mainQ.GetTop()-> p_fun(); cout  << endl;
-	mainQ.RemoveTop();	
-	cout << endl << "The next event has just ocurred.  It is " << mainQ.GetTop()->time << " years after the start of the model and "; mainQ.GetTop()-> p_fun();
+	cout << endl << "The next event has just ocurred.  It is " << iQ.top()->time << " years after the start of the model and "; iQ.top()-> p_fun();
+	cout << "The following top event has just been removed from the event queue "; iQ.top()-> p_fun(); cout  << endl;
+	iQ.pop();	
+	cout << endl << "The next event has just ocurred.  It is " << iQ.top()->time << " years after the start of the model and "; iQ.top()-> p_fun();
+	cout << "The following top event has just been removed from the event queue "; iQ.top()-> p_fun(); cout  << endl;
+	iQ.pop();	
+	cout << endl << "The next event has just ocurred.  It is " << iQ.top()->time << " years after the start of the model and "; iQ.top()-> p_fun();
 		
 	cin.get();
 	return 0;
