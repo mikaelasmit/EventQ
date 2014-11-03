@@ -30,7 +30,7 @@ public:
 	
 	// Miki Note: This is elements of the priorityQ defined by Jack to be removed in next version
 	// [...] consider using later on if needed
-	void Add(event * const theEvent);		// This allows to make an event pointer to 'theEvent' used e.g. in iQ.push(theEvent)
+	void Add(event * const theEvent);		// Miki Note: This allows to make an event pointer to 'theEvent' used e.g. in iQ.push(theEvent)
 
 	int Size() const;						
 

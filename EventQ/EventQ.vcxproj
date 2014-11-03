@@ -74,11 +74,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="eventfunctions.cpp" />
     <ClCompile Include="event.cpp" />
     <ClCompile Include="eventQ.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="eventfunctions.h" />
     <ClInclude Include="event.h" />
     <ClInclude Include="eventQ.h" />
   </ItemGroup>

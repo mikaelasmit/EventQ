@@ -23,7 +23,7 @@ eventQ::eventQ()
 
 
 //// --- FUNCTIONS TO ASSIGN ELEMENTS OF EVENTQ ---
-// Miki Notes: these self-defined elements are used by Jack - remove in next version
+// Miki Notes: these self-defined elements are used by Jack - remove in next version!
 void eventQ::Add(event * const theEvent)		// --- Make an ADD event element ---
 {
 	iQ.push(theEvent);
