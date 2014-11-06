@@ -3,13 +3,15 @@
 //  Copyright (c) 2014 Mikael Smit. All rights reserved.
 //
 
-#ifndef eventQ_h							// If not defined then defines it  # are pre-compiler definitions
+#ifndef eventQ_h							
 #define eventQ_h				
 
-#include <stdio.h>							// Not sure what this one does - CHECK
+#include <stdio.h>							// Refers to C StandarD Input Output library - uses streams to operate with physical devices including keyboards
 #include <queue>							// Needed for the priorityQ
 
 using namespace std;
+
+
 
 //// --- DEFINE THE COMPARISON CLASS AND DEFINE OPERATOR() ---
 struct timeComparison {bool operator()(const event *lhs, const event *rhs) const;};	
@@ -20,25 +22,7 @@ class eventQ{
 public:
 
 	eventQ();								// Constructor
-	
-	
-	
-	//// --- ADDITIONAL CODE FOR LATER - MAYBE --- ////
-	
-	//~eventQ();							// Jack included this deconstructor - CHECK USAGE OF DECONSTRUCTORS
-	
-	// Miki Note: This is elements of the priorityQ defined by Jack to be removed in next version
-	//// [...] consider using later on if needed
-	//void Add(event * const theEvent);		// Miki Note: This allows to make an event pointer to 'theEvent' used e.g. in iQ.push(theEvent)
 
-	//int Size() const;						
-
-	//event * GetTop();
-	//	
-	//void RemoveTop();
-	//
-	//priority_queue<event*, vector<event*>, timeComparison> iQ;
-	
 };
 
 #endif		
