@@ -15,13 +15,13 @@
 // 5. Insert a global time into the model to record time - DONE
 // 6. Add global time to EventQ - DONE
 // 6. Make birthdays recurrent using function pointers and global time - DONE
-// 7. Merge MakingPatients and EventQ code to make events happen to two different patients
-// 8. Link death to age using a simple linear equation (increased age=increased death)
-// 9. Give patients a birth date from age
-// 10. Include better mortality function 
-// 10. Add a stop time to the model
-// 11. Remove repeated queue code from main() in EventQ and make it into a self-contained loop until model stop time
-// 12. Check that age distribution and mortality fits Kenyan data.  
+// 7. Remove repeated queue code from main() in EventQ and make it into a self-contained loop until model stop time - DONE
+// 8. Merge MakingPatients and EventQ code to make events happen to two different patients
+// 9. Link death to age using a simple linear equation (increased age=increased death)
+// 10. Give patients a birth date from age
+// 11. Include better mortality function 
+// 12. Add a stop time to the model
+// 13. Check that age distribution and mortality fits Kenyan data.  
  
 
 #include <string>
@@ -74,37 +74,30 @@ int main()
 	BirthdayDate->time = GetDateOfBirthday(1,2);
 	BirthdayDate->p_fun = &TellMyBirthDate;				
 	
-	
-	
-	//// --- EVENT QUEUE ---
-	//eventQ mainQ;													// Define event queue
-	//eventQ::iQ mainQ;
-	
-	iQ.push(HivTest);												// Add HIVTest to queue
-	iQ.push(DeathDate);												// Add Death to queue
-	iQ.push(BirthdayDate);											// Add Birthday to queue
-
-	
-	// --- GIVE OUTPUT OF QUEUE AS IT PROGRESSES ---
-
 	// To check what these dates are to proof EventQ
 	cout << "Lets check the dates given to primary events: " << endl;
 	cout << endl << "The date of HIV Infection is " << HivTest->time << " years after the start of model." << endl;
 	cout << "The date of Death is " << DeathDate->time << " years after the start of model."<< endl;
 	cout << "The date of my next birthday is " << BirthdayDate->time << " years after the start of model." << endl;
 
+	// Lets check global time
+	cout << endl << "The Global Time at the start of the model is " << GlobalTime << endl;
+	
+
+	//// --- EVENT QUEUE ---
+	iQ.push(HivTest);												// Add HIVTest to queue
+	iQ.push(DeathDate);												// Add Death to queue
+	iQ.push(BirthdayDate);											// Add Birthday to queue
+
+	
+	//// --- GIVE OUTPUT OF QUEUE AS IT PROGRESSES ---
 	// Lets check the queue
 	cout << endl <<"Characteristics of the event queue:" << endl;
 	cout << "The event at the top of the queue will ocurr  " << iQ.top()->time << " years after the start of model." << endl;
 	cout << "The size of the event queue is " << iQ.size() << endl;
 	
-	// Lets check global time
-	cout << endl << "The Global Time at the start of the model is " << GlobalTime << endl;
-	GlobalTime=iQ.top()->time;										// Update Global time to make functions below correct
-
-	// Lets run event queue and output it
-	// Miki Note: always update Global Time at the right point in the event queue to ensure that p_GT
-	// [...] is using the right Global Time in the functions that are called when an event happens.  
+	while(GlobalTime<5)
+	{
 	cout << endl << "An event has just ocurred.  " << endl;
 	cout << "It is " << iQ.top()->time << " years after the start of the model and "; iQ.top()-> p_fun();
 	GlobalTime=iQ.top()->time;
@@ -114,29 +107,7 @@ int main()
 	cout << endl << "An event has been removed from the queue.  " << endl;
 
 	GlobalTime=iQ.top()->time;										// Update Global time to make functions below correct
-	cout << endl << "An event has just ocurred.  " << endl;
-	cout << "It is " << iQ.top()->time << " years after the start of the model and "; iQ.top()-> p_fun();
-	GlobalTime=iQ.top()->time;
-	cout << endl << "Global Time after this event is " << GlobalTime << endl;
-	
-	iQ.pop();
-	cout << endl << "An event has been removed from the queue.  " << endl;
-
-	GlobalTime=iQ.top()->time;										// Update Global time to make functions below correct
-	cout << endl << "An event has just ocurred.  " << endl;
-	cout << "It is " << iQ.top()->time << " years after the start of the model and "; iQ.top()-> p_fun();
-	GlobalTime=iQ.top()->time;
-	cout << endl << "Global Time after this event is " << GlobalTime << endl;
-	
-	iQ.pop();
-	cout << endl << "An event has been removed from the queue.  " << endl;
-
-	GlobalTime=iQ.top()->time;										// Update Global time to make functions below correct
-	cout << endl << "An event has just ocurred.  " << endl;
-	cout << "It is " << iQ.top()->time << " years after the start of the model and "; iQ.top()-> p_fun();
-	GlobalTime=iQ.top()->time;
-	cout << endl << "Global Time after this event is " << GlobalTime << endl;
-	
+	}
 	
 	cin.get();
 	return 0;
